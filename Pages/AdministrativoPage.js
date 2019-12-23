@@ -128,5 +128,41 @@ export class AdministrativoPage {
  getSecondaryButton() {
   cy.get('.secondaryButton').click();  
  }
+
+ HoursActionIconButton(){
+  cy.get(':nth-child(1) > :nth-child(7) > a > .actionIcon').click();   
+ }
+
+ PDFExcelNav() {
+  cy.get(':nth-child(2) > .nav-link').click(); 
+ }
+
+ FormSelect(company, value) {
+  cy.get('form > .align-items-center > :nth-child(2)').select(company).should('have.value', value);
+ }
+
+ FormSelectActivity(activity, value) {
+  cy.get('div.align-items-center.form-row > select:nth-of-type(2)').select(activity).should('have.value', value);
+ }
+
+ FormSelectDate(month, date) {
+  cy.get('div.align-items-center.form-row > select:nth-of-type(3)').select(month).should('have.value', value);
+ }
+
+ PDFPrimaryButton() {
+  cy.get('.primaryButton > .svg-inline--fa').click();
+ }
+
+ PDFClick() {
+  cy.get(':nth-child(3) > .dx-g-bs4-cursor-pointer > .position-sticky > .oi').click();  
+ }
+
+ PDFActionButton() {
+  cy.get('a > .actionIcon > .svg-inline--fa').click(); 
+ }
+
+ PDFActionButtonSvg(){
+  cy.get('tbody > tr:nth-of-type(4) > td:nth-of-type(8) > button.actionIcon > svg > path').click(); 
+ }
 }
 

@@ -1,4 +1,3 @@
-import { AtividadesPage } from '../../Pages/AtividadesPage';
 import { AdministrativoPage } from '../../Pages/AdministrativoPage';
 
 
@@ -58,55 +57,31 @@ describe('SCA Front-End Automation Test', () => {
     administrativo.secondaryButtonClick();
   });
   it('Administrativo abrir planilha de horas colaborador', () => {
-    cy.get('div.mr-auto.navbar-nav > a:nth-of-type(5)').click();
-    cy.get('input.inputSca.form-control').type('Matheus');
-    cy.get('select').select('Agosto 2019').should('have.value', '1564628400000');
-    cy.get('.primaryButton');
-    cy.get(':nth-child(1) > :nth-child(7) > a > .actionIcon').click(); 
+    administrativo.navClick();
+    administrativo.inputSCAform('Matheus');
+    administrativo.selectPeriod('Agosto 2019', '1564628400000');
+    administrativo.getPrimaryButton();
+    administrativo.HoursActionIconButton();
   });
   it('Baixar PDF e abrir planilha de horas em Faturamento>Horas por projeto', () => {
-    cy.visit('http://scaweb-develop.ingress.softdesign-rs.com.br');
-    cy.get('div.form-group > input:first-child').type('matheus.mendonca');
-    cy.get('div.form-group > input:nth-of-type(2)').type('teste123');
-    cy.get('button.primaryButton').click();
-    
-    cy.get('div.mr-auto.navbar-nav > a:nth-of-type(5)').click();
-    
-    cy.get(':nth-child(2) > .nav-link').click();
-    
-    cy.get('form > .align-items-center > :nth-child(2)').select('SoftDesign').should('have.value', '1');
-    
-    cy.get('div.align-items-center.form-row > select:nth-of-type(2)').select('Criação do novo SCA').should('have.value', '1');
-    
-    cy.get('div.align-items-center.form-row > select:nth-of-type(3)').select('Agosto - 15/ 08 a 14/ 09').should('have.value', '1564628400000');
-    cy.get('.primaryButton > .svg-inline--fa').click();
-    
-    cy.get(':nth-child(3) > .dx-g-bs4-cursor-pointer > .position-sticky > .oi').click();
-    
-    cy.get('a > .actionIcon > .svg-inline--fa').click();
-    
-    cy.get('tbody > tr:nth-of-type(4) > td:nth-of-type(8) > button.actionIcon > svg > path').click();
+    administrativo.navClick();
+    administrativo.PDFExecelNav();
+    administrativo.FormSelect('SoftDesign', '1');
+    administrativo.FormSelectActivity('Criação do novo SCA', '1');
+    administrativo.FormSelectDate('Agosto - 15/ 08 a 14/ 09', '1564628400000');
+    administrativo.PDFPrimaryButton();
+    administrativo.PDFClick();
+    administrativo.PDFActionButton();
+    administrativo.PDFActionButtonSvg();
   });
   it('Baixar excel em faturamento>Horas por projeto', () => {
-    cy.visit('http://scaweb-develop.ingress.softdesign-rs.com.br');
-    cy.get('div.form-group > input:first-child').type('matheus.mendonca');
-    cy.get('div.form-group > input:nth-of-type(2)').type('teste123');
-    
-    cy.get('button.primaryButton').click();
-    
-    cy.get('div.mr-auto.navbar-nav > a:nth-of-type(5)').click();
-    
-    cy.get(':nth-child(2) > .nav-link').click();
-    
-    cy.get('form > .align-items-center > :nth-child(2)').select('SoftDesign').should('have.value', '1');
-    
-    cy.get('div.align-items-center.form-row > select:nth-of-type(2)').select('Criação do novo SCA').should('have.value', '1');
-    
-    cy.get('div.align-items-center.form-row > select:nth-of-type(3)').select('Agosto - 15/ 08 a 14/ 09').should('have.value', '1564628400000');
-    
-    cy.get('.primaryButton').click();
-    
-    cy.get('button.secondaryButton').click();
+    administrativo.navClick();
+    administrativo.PDFExecelNav();
+    administrativo.FormSelect('SoftDesign', '1');
+    administrativo.FormSelectActivity('Criação do novo SCA', '1');
+    administrativo.FormSelectDate('Agosto - 15/ 08 a 14/ 09', '1564628400000');
+    administrativo.getPrimaryButton();
+    administrativo.getSecondaryButton();
   });
   // eslint-disable-next-line no-trailing-spaces
 });
