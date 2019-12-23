@@ -1,4 +1,3 @@
-import { AtividadesPage } from '../../Pages/AtividadesPage';
 import { ProjetoPage } from '../../Pages/ProjetoPage';
 
 
